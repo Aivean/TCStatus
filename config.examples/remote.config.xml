@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config baseUrl="http://****.*****.com:8111" user="test" pass="********" refreshIntervalSec="20"
+        fullScreen="false" dimensionsRatio="20">
+
+       <calendarUrl>
+           https://www.google.com/calendar/feeds/tcviewer%40gmail.com/private-62e2ebbb97b76510b41539a0afa7b6b8/full
+       </calendarUrl>
+
+    <build displayName="Test [trunk]" buildTypeId="bt13"/>
+    <build displayName="Flex [trunk]" buildTypeId="bt15"/>
+    <build displayName="8.7 Creative Improvements" buildTypeId="bt30" hidden="true"/>
+    <build displayName="8.7 Publishers Sharing" buildTypeId="bt27" hidden="true"/>
+    <build displayName="8.7 Video Finalization" buildTypeId="bt28" hidden="true"/>
+    <build displayName="8.7 End to End tracking" buildTypeId="bt34" hidden="true"/>
+    <build displayName="8.7 Access permissions" buildTypeId="bt31" hidden="true"/>
+</config>

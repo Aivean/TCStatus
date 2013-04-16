@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config baseUrl="http://tc.*******.*******.com:8111" user="******" pass="*******" refreshIntervalSec="5"
+        fullScreen="false" dimensionsRatio="22">
+
+    <calendar>
+        <url>http://www.google.com/calendar/feeds/user%40******.com/private/full</url>
+        <user>*******@*********.com</user>
+        <password>********</password>
+    </calendar>
+
+    <build displayName="Test [trunk]" buildTypeId="bt13"  />
+    <build displayName="Checkstyle [trunk]" buildTypeId="bt53"  />
+</config>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config baseUrl="http://localhost:8111" user="test" pass="test" refreshIntervalSec="5" dimensionsRatio="10"
+        fullScreen="false">
+
+            <!--<calendarUrl>-->
+                <!--https://www.google.com/calendar/feeds/*******%40gmail.com/private-*****************/full-->
+            <!--</calendarUrl>-->
+
+    <build displayName="8.6.0" buildTypeId="bt3"/>
+    <build displayName="trunk" buildTypeId="bt2"/>
+</config>
