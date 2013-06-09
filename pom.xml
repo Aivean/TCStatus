@@ -39,6 +39,17 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 
@@ -63,8 +74,9 @@
         </dependency>
         <dependency>
             <groupId>com.google.gdata</groupId>
-            <artifactId>gdata-calendar-2.0</artifactId>
-            <version>1.41.5</version>
+            <artifactId>core</artifactId>
+            <version>1.47.1</version>
         </dependency>
+
     </dependencies>
 </project>
