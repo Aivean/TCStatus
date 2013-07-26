@@ -1,6 +1,7 @@
 package org.aivean.teamcity;
 
 import com.thoughtworks.xstream.XStream;
+
 import org.aivean.teamcity.model.*;
 import org.aivean.util.XStreamFactory;
 
@@ -65,6 +66,7 @@ public class API {
     }
 
     class MyAuthenticator extends Authenticator {
+        @Override
         public PasswordAuthentication getPasswordAuthentication() {
             return (new PasswordAuthentication(user, password.toCharArray()));
         }
@@ -104,7 +106,7 @@ public class API {
 
     private List<Build> getBuildsForQuery(String query) throws ApiException {
         try {
-        String str = download(getBaseUrl()+"/httpAuth/app/rest/builds/" + query);
+        String str = download(getBaseUrl() + "/builds/" + query);
         return ((Builds) XSTREAM.fromXML(str)).getBuilds();
         } catch (Exception e) {
             throw new ApiException(e);
@@ -115,7 +117,7 @@ public class API {
     public Build getBuildById(Integer buildId) throws ApiException {
         try {
             String str;
-            str = download(getBaseUrl() + "/httpAuth/app/rest/builds/id:" + buildId);
+            str = download(getBaseUrl() + "/builds/id:" + buildId);
             return (Build) XSTREAM.fromXML(str);
         } catch (Exception e) {
             throw new ApiException(e);
@@ -141,7 +143,7 @@ public class API {
     public LinkedList<Change> getChangesForBuild(Integer buildId) {
         try {
             String str;
-            str = download(getBaseUrl() + "/httpAuth/app/rest/changes?build=id:" + buildId);
+            str = download(getBaseUrl() + "/changes?build=id:" + buildId);
             Changes changes = (Changes) XSTREAM.fromXML(str);
 
             LinkedList<Change> result = new LinkedList<Change>();
