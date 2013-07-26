@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<config baseUrl="http://tc.*******.*******.com:8111" user="******" pass="*******" refreshIntervalSec="5"
+<config baseUrl="http://tc.*******.*******.com:8111/httpAuth/app/rest/7.0" user="******" pass="*******" refreshIntervalSec="5"
         fullScreen="false" dimensionsRatio="22">
 
     <calendar>
