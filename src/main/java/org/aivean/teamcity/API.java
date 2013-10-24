@@ -6,12 +6,11 @@ import org.aivean.teamcity.model.*;
 import org.aivean.util.XStreamFactory;
 
 import java.io.*;
-import java.net.Authenticator;
-import java.net.PasswordAuthentication;
-import java.net.URL;
-import java.net.URLConnection;
+import java.net.*;
 import java.util.LinkedList;
 import java.util.List;
+
+import static java.lang.String.format;
 
 /**
  * @author izaytsev
@@ -106,8 +105,8 @@ public class API {
 
     private List<Build> getBuildsForQuery(String query) throws ApiException {
         try {
-        String str = download(getBaseUrl() + "/builds/" + query);
-        return ((Builds) XSTREAM.fromXML(str)).getBuilds();
+            String str = download(getBaseUrl() + "/builds/" + query);
+            return ((Builds) XSTREAM.fromXML(str)).getBuilds();
         } catch (Exception e) {
             throw new ApiException(e);
         }
@@ -139,7 +138,7 @@ public class API {
         return getFirstBuildForQuery("?locator=running:any,personal:false,canceled:false," +
                 "buildType:" + buildTypeId + ",count:1");
     }
-    
+
     public LinkedList<Change> getChangesForBuild(Integer buildId) {
         try {
             String str;
@@ -148,13 +147,24 @@ public class API {
 
             LinkedList<Change> result = new LinkedList<Change>();
             for (Change change : changes.getChanges()) {
-                str = download(getBaseUrl() + change.getHref());
+                str = download(getHostUrl() + change.getHref());
                 result.add((Change) XSTREAM.fromXML(str));
             }
             return result;
         } catch (Exception e) {
             throw new ApiException(e);
         }
+    }
+
+    public String getHostUrl() {
+        URL url;
+        try {
+            url = new URL(getBaseUrl());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return format("%s://%s:%s", url.getProtocol(), url.getHost(), url.getPort());
     }
 
 }
