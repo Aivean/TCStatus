@@ -68,7 +68,7 @@ public class BuildViewModel {
 
     public BuildStatus getLastStableBuildStatus() {
         if ( lastFinishedBuild != null) {
-        return lastFinishedBuild.getStatus();
+            return lastFinishedBuild.getStatus();
         } else {
             return null;
         }
@@ -97,6 +97,7 @@ public class BuildViewModel {
             updateLastStableBuild = api.getLastStableBuild(getBuildTypeId());
             updateCurrentBuild = api.getLastBuild(getBuildTypeId());
         } catch (Exception e) {
+            e.printStackTrace();
             return;
         }
 
@@ -105,15 +106,7 @@ public class BuildViewModel {
                 !updateLastStableBuild.getStatus().equals(BuildStatus.SUCCESS) && BuildStatus.SUCCESS.equals(this
                 .lastFinishedBuild.getStatus())) {
 
-            Set<String> failers = new HashSet<String>();
-            try {
-                LinkedList<Change> changesForBuild = api.getChangesForBuild(updateLastStableBuild.getId());
-                for (Change change : changesForBuild) {
-                    failers.add(change.getUsername());
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            Set<String> failers = getFailers(api, updateLastStableBuild.getId());
             Application.getInstance().addEvent(new FailedBuildEvent(getDisplayName(),
                     new LinkedList<String>(failers)));
         }
@@ -168,10 +161,23 @@ public class BuildViewModel {
         }
     }
 
+    public Set<String> getFailers(API api, int buildId) {
+        Set<String> failers = new HashSet<String>();
+        try {
+            LinkedList<Change> changesForBuild = api.getChangesForBuild(buildId);
+            for (Change change : changesForBuild) {
+                failers.add(change.getUsername());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return failers;
+    }
+
     public BuildStatusModel getlastFinishedBuild() {
         return lastFinishedBuild;
     }
-    
+
     public int getPersonalBuildsCount(){
         return runningPersonalBuilds.size();
     }
@@ -179,5 +185,5 @@ public class BuildViewModel {
     public org.aivean.application.BuildStatus[] getPersonalBuilds() {
         return runningPersonalBuilds.toArray(new org.aivean.application.BuildStatus[runningPersonalBuilds.size()]);
     }
-    
+
 }
