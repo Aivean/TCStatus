@@ -1,6 +1,42 @@
+target/
 .settings
-target
+.settings.xml
 .classpath
 .project
 .DS_Store
 config.out.xml
+
+
+# Build artifacts
+*.class
+
+# Package Files
+#*.jar
+#*.war
+#*.sar
+#*.ear
+
+# IntelliJ IDEA files #
+.idea
+*.iml
+*.ipr
+*.iws
+*.ids
+atlassian-ide-plugin.xml
+
+# Eclipse/STS files #
+.project
+.classpath
+.settings
+.DS_Store
+.springBeans
+bin/
+.springBeans
+
+# VIM swap files:
+*.swo
+*.swp
+*~
+
+# Scripts
+*.bat
