@@ -11,42 +11,13 @@ import com.thoughtworks.xstream.annotations.XStreamAsAttribute;
 public class RunningInfo {
 
     @XStreamAsAttribute
-    Integer percentageComplete;
-
-    @XStreamAsAttribute
     Integer elapsedSeconds;
-
-    @XStreamAsAttribute
-    Boolean probablyHanging = false;
 
     @XStreamAsAttribute
     Integer estimatedTotalSeconds;
 
-    @XStreamAsAttribute
-    String currentStageText;
-
-    public Integer getPercentageComplete() {
-        return percentageComplete;
-    }
-
-    public void setPercentageComplete(Integer percentageComplete) {
-        this.percentageComplete = percentageComplete;
-    }
-
     public Integer getElapsedSeconds() {
         return elapsedSeconds;
-    }
-
-    public void setElapsedSeconds(Integer elapsedSeconds) {
-        this.elapsedSeconds = elapsedSeconds;
-    }
-
-    public Boolean getProbablyHanging() {
-        return probablyHanging;
-    }
-
-    public void setProbablyHanging(Boolean probablyHanging) {
-        this.probablyHanging = probablyHanging;
     }
 
     public Integer getEstimatedTotalSeconds() {
@@ -55,13 +26,5 @@ public class RunningInfo {
 
     public void setEstimatedTotalSeconds(Integer estimatedTotalSeconds) {
         this.estimatedTotalSeconds = estimatedTotalSeconds;
-    }
-
-    public String getCurrentStageText() {
-        return currentStageText;
-    }
-
-    public void setCurrentStageText(String currentStageText) {
-        this.currentStageText = currentStageText;
     }
 }

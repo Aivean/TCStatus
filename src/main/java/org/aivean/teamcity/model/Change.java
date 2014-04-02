@@ -19,10 +19,6 @@ public class Change {
     @XStreamAsAttribute
     String href;
 
-    String comment;
-    String files;
-    String user;
-
     public String getUsername() {
         return username;
     }

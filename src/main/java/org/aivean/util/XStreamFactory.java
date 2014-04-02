@@ -4,6 +4,7 @@ import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.converters.basic.DateConverter;
 import com.thoughtworks.xstream.converters.collections.MapConverter;
 import com.thoughtworks.xstream.converters.reflection.PureJavaReflectionProvider;
+import com.thoughtworks.xstream.io.xml.XmlFriendlyNameCoder;
 import com.thoughtworks.xstream.io.xml.XmlFriendlyReplacer;
 import com.thoughtworks.xstream.io.xml.XppDomDriver;
 import com.thoughtworks.xstream.mapper.MapperWrapper;
@@ -16,9 +17,26 @@ public class XStreamFactory {
     private static final String DATE_FORMAT = "yyyyMMddHHmmss.SSSZ";
     private static final String[] ALT_DATE_FORMATS = {"yyyyMMdd'T'HHmmssZ"};
 
-    public static XStream getXStream(Class ... annotatedClasses) {
-        XStream xstream = new XStream(new PureJavaReflectionProvider(), new XppDomDriver(new XmlFriendlyReplacer
-                ("_-", "_")));
+    public static XStream getXStream(Class... annotatedClasses) {
+        XStream xstream = new XStream(new PureJavaReflectionProvider(), new XppDomDriver(new XmlFriendlyNameCoder
+                ("_-", "_"))){
+            @Override
+            protected MapperWrapper wrapMapper(MapperWrapper next) {
+                return new MapperWrapper(next) {
+                    @Override
+                    public boolean shouldSerializeMember(Class definedIn, String fieldName) {
+                        boolean result;
+                        if (definedIn == Object.class) {
+                            //This is not compatible with implicit collections where item name is not defined
+                            return false;
+                        } else {
+                            result = super.shouldSerializeMember(definedIn, fieldName);
+                            return result;
+                        }
+                    }
+                };
+            }
+        };
 
 
         if (annotatedClasses != null) {

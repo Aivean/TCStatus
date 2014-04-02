@@ -31,30 +31,7 @@ public class Build {
     Date startDate;
     Date finishDate;
     
-    String agent;
-    String tags;
-    String properties;
-    String revisions;
-    String changes;
-    String relatedIssues;
-    
-    String comment;
-
     User user;
-
-
-    @XStreamAlias("snapshot-dependencies")
-    String snapshotDependencies;
-
-    @XStreamAlias("artifact-dependencies")
-    String artifactDependencies;
-
-    @XStreamAlias("dependency-build")
-    String dependencyBuild;
-
-    @XStreamAlias("triggered")
-    String triggered;
-
 
     @XStreamAlias("running-info")
     RunningInfo runningInfo;
@@ -145,70 +122,6 @@ public class Build {
 
     public void setRunningInfo(RunningInfo runningInfo) {
         this.runningInfo = runningInfo;
-    }
-
-    public String getAgent() {
-        return agent;
-    }
-
-    public void setAgent(String agent) {
-        this.agent = agent;
-    }
-
-    public String getChanges() {
-        return changes;
-    }
-
-    public void setChanges(String changes) {
-        this.changes = changes;
-    }
-
-    public String getProperties() {
-        return properties;
-    }
-
-    public void setProperties(String properties) {
-        this.properties = properties;
-    }
-
-    public String getRelatedIssues() {
-        return relatedIssues;
-    }
-
-    public void setRelatedIssues(String relatedIssues) {
-        this.relatedIssues = relatedIssues;
-    }
-
-    public String getRevisions() {
-        return revisions;
-    }
-
-    public void setRevisions(String revisions) {
-        this.revisions = revisions;
-    }
-
-    public String getTags() {
-        return tags;
-    }
-
-    public void setTags(String tags) {
-        this.tags = tags;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public String getDependencyBuild() {
-        return dependencyBuild;
-    }
-
-    public void setDependencyBuild(String dependencyBuild) {
-        this.dependencyBuild = dependencyBuild;
     }
 
     public User getUser() {
